@@ -1,0 +1,11 @@
+1) Data Engineering grp announces DB on dev mysql server as "ready for QA"
+2) Determine datestamp VERSION id (e.g. "20181109") based on latest timestamp on mysql data files (*.MYD) for specified database
+     If incremental update, with no schema or sproc parameter changes, use previous date, but append 'u1' or 'u#' where # is update identifier.
+     For example, a minor, no-code-post update to a poseidon data set could be called "debt_20180909u1", attached to database "debt_20180909",
+     with the intent to keep database name the same as prior, so no code post is needed to apply the update to production services.
+3) Determine which DB server and SAN the source database lives on (e.g. devmysql01, devmysql03, or devgalmysql01, and pure1 or pure3)
+4) Some smaller databases cannot be cloned, since they don't live on a dedicated volume attached to the source DB server.  For these, a new
+     volume must be created on the QA DB server (qa-posmysql01 for poseidon DBs, qa-mysql01 for SEO, or qa-galmysql01)
+
+_TBC_
+     

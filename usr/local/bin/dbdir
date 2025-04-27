@@ -1,0 +1,20 @@
+#!/bin/bash
+MYSQLDBDIR=/db/mysql/data
+
+if [ "$1" ]; then
+  if [ -e "${MYSQLDBDIR}/$1" ]; then
+    if cd "${MYSQLDBDIR}/$1"; then
+      cd $(/bin/pwd)/..
+      /bin/pwd
+    else
+      echo "Could not chdir to ${MYSQLDBDIR}/$1" >&2
+      exit 1
+    fi
+  else
+    echo "MySQL DB Directory for $1 does not exist" >&2
+    exit 1
+  fi
+else
+  echo "Usage: $0 <DBNAME>"
+  exit 0
+fi

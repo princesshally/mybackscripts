@@ -1,0 +1,216 @@
+#!/bin/bash
+# PFLOCAL
+# PFDISTRIB
+export LC_ALL=C
+export LANG=C
+PARTLIST=""
+
+if tail --help | grep -q PID; then
+  echo "Yay!  we have modern tail" >/dev/null
+else
+  echo "This script requires a modern version of the tail command that supports the --pid option"
+  exit 1
+fi
+
+while [ "$1" ]; do
+  arg="$1"
+  shift
+  if [ "$arg" = "-d" ]; then
+    if [ "$1" ]; then
+      DBNAME=$1
+      shift
+    else
+      echo "-d requires DBNAME argument"
+      exit 1
+    fi
+    continue
+  fi
+  if [ "$arg" = "-e" ]; then
+    if [ "$1" ]; then
+      DBEXPORT=$1
+      shift
+    else
+      echo "-e requires DBEXPORT directory argument"
+      exit 1
+    fi
+    continue
+  fi
+   if [ "$arg" = "-p" ]; then
+    if [ "$1" ]; then
+      PARTLIST="$PARTLIST $1"
+      shift
+    else
+      echo "-p requires PARTITIONID id"
+      exit 1
+    fi
+    continue
+  fi
+  if [ "$arg" = "-t" ]; then
+    if [ "$1" ]; then
+      SOURCETABLE=$1
+      SOURCETABLE=$(echo "$SOURCETABLE" | cut -d. -f1 | cut -d"#" -f1)
+      shift
+    else
+      echo "-t requires SOURCETABLE table name"
+      exit 1
+    fi
+    continue
+  fi
+  echo "Unknown option: $arg" >&2
+done
+
+if [ -z "$DBNAME" ]; then
+  echo "Need -d DBNAME argument" >&2
+fi
+if [ -z "$DBEXPORT" ]; then
+  echo "Need -e DBEXPORT directory argument" >&2
+fi
+if [ -z "$SOURCETABLE" ]; then
+  echo "Need -t SOURCETABLE argument" >&2
+fi
+if [ -z "$DBNAME" ] || [ -z "$DBEXPORT" ] || [ -z "$SOURCETABLE" ]; then
+  exit 1
+fi
+
+#DBDATA=${DBVOL}/data
+
+#DBDATA=/db/mysql/data/swap_test
+echo "DBNAME:$DBNAME SOURCETABLE:$SOURCETABLE DBEXPORT:$DBEXPORT PARTLIST:$PARTLIST"
+sleep 2
+find /db/mysql/data/*/ -name "${SOURCETABLE}[.#]*" | grep "\b${DBNAME}\b" | rev | cut -d/ -f2- | rev |uniq > /tmp/f.$$
+if cat /tmp/f.$$ | wc -l | grep "^1$"; then
+  DBDATA=$(cat /tmp/f.$$)
+  echo "Found database directory $DBDATA" >&2
+  rm -f /tmp/f.$$
+else
+  echo "Could not find database directory (zero or more than one found)" >&2
+  exit 1
+fi
+
+export MYSQL_OPTS="-u root $DBNAME"
+
+if mkdir -p $DBEXPORT; then
+  echo "Export directory: $DBEXPORT" >&2
+else
+  echo "Error creating $DBEXPORT directory" >&2
+  exit 1
+fi
+
+run_mysql_cmd() {
+  SQL="$*"
+  _OUT=$(mktemp /tmp/mysql_cmd_XXXXXX)
+
+  mysql ${MYSQL_OPTS} -r -s -e "$SQL" >${_OUT} 2>&1
+  RET=$?
+#  echo "mysql exit code: $RET"
+#  echo "results in $_OUT"
+  cat $_OUT
+  rm -f $_OUT
+  return $RET
+}
+
+run_mysql_pipe() {
+  _PIPE=$1
+  _OUT=$2
+  if [ "$1" ] && [ "$2" ]; then
+    echo "Starting mysql command pipe from $_PIPE to $_OUT ..." >&2
+    ( tail --pid=$$ -F $_PIPE | mysql -r -s -n ${MYSQL_OPTS} >${_OUT} 2>&1 & echo $! > ${_PIPE}.pid )
+    sleep 1
+    PID=$(cat ${_PIPE}.pid)
+    if [ "$PID" ]; then
+      echo "Async persistent mysql client pid is $PID" >&2
+      return 0
+    else
+      echo "Async persistent mysql client didn't generate a PID!" >&2
+      return 1
+    fi
+  fi
+}
+  
+
+echo "Checking existence of $SOURCETABLE"
+if run_mysql_cmd "SHOW TABLES LIKE '${SOURCETABLE}'" | grep -q "${SOURCETABLE}"; then
+  echo "OK: source ${SOURCETABLE} exists" >&2
+else
+  echo "ERR: source $SOURCETABLE does not exist." >&2
+  exit 1
+fi
+
+echo "Making sure tables aren't locked"
+if run_mysql_cmd "show open tables where In_Use > 0" | grep -q "^${DBNAME}\b.*\b${SOURCETABLE}\b"; then
+  echo "ERR: Source table $SOURCETABLE is locked.  Cannot proceed." >&2
+  exit 1
+else
+  echo "OK: $SOURCETABLE is not locked.  Proceeding." >&2
+fi
+
+PIPE=$(mktemp /tmp/mysql_in_XXXXXX)
+OUT=$(mktemp /tmp/mysql_out_XXXXXX)
+
+echo "Starting async mysql pipeline" >&2
+run_mysql_pipe $PIPE $OUT
+
+PID=$(cat ${PIPE}.pid)
+
+echo "FLUSH TABLES ${SOURCETABLE} WITH READ LOCK;" >> $PIPE
+echo "SELECT 'READY1';" >> $PIPE
+X=60; OK=""
+while [ $X -gt 0 ]; do
+  X=$((X-1))
+  if grep -q READY1 $OUT; then
+    OK=1
+    break
+  fi
+  sleep 1
+done
+if [ "$OK" = "1" ]; then
+  echo "OK: FLUSH TABLES completed" >&2
+else
+  echo "ERR: Timeout waiting for FLUSH TABLES to complete" >&2
+  kill -HUP $PID
+  exit 1
+fi
+
+if [ "$PARTLIST" ]; then
+  PARTLIST=$(echo $PARTLIST | sed -e 's/^ *//g' -e 's/ *$//g')
+  for PARTITIONID in $PARTLIST; do
+    echo "Copying ${SOURCETABLE}:${PARTITIONID} to $DBEXPORT" >&2
+    cp -av ${DBDATA}/${SOURCETABLE}#P#${PARTITIONID}.* ${DBEXPORT}/
+    #rsync -av ${DBDATA}/${SOURCETABLE}#P#${PARTITIONID}.* ${DBEXPORT}/
+  done
+else
+  echo "Copying $SOURCETABLE to $DBEXPORT" >&2
+  cp -av ${DBDATA}/${SOURCETABLE}[#.]* ${DBEXPORT}/
+  #rsync -av ${DBDATA}/${SOURCETABLE}[#.]* ${DBEXPORT}/
+fi
+
+echo "Unlocking table" >&2
+echo "UNLOCK TABLES;" >> $PIPE
+echo "SELECT 'READY2';" >> $PIPE
+X=60; OK=""
+while [ $X -gt 0 ]; do
+  X=$((X-1))
+  if grep -q READY2 $OUT; then
+    OK=1
+    break
+  fi
+  sleep 1
+done
+if [ "$OK" = "1" ]; then
+  echo "OK: UNLOCK TABLES completed" >&2
+else
+  echo "ERR: Timeout waiting for FLUSH TABLES to complete" >&2
+  kill -HUP $PID
+  exit 1
+fi
+
+
+echo "Quitting mysql pipeline" >&2
+echo "\\q" >> $PIPE
+sleep 1
+
+count=$(ls -ld ${DBEXPORT}/${SOURCETABLE}[#.]* | wc -l)
+echo "OK: finished exporting ${SOURCETABLE} (${count} files) to ${DBEXPORT}" >&2
+
+
+exit 0
