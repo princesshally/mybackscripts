@@ -1,0 +1,459 @@
+       <S1> 14:02 [root@storage-admin:/opt/pvc/poseidon]
+# pvc-menu.sh pvc-tahoe_namefreq-base-to-prod.conf -s 20210304
+Using pvc-tahoe_namefreq-base-to-prod.conf
+Using deployment config file pvc-tahoe_namefreq-base-to-prod.conf ...
+Setting new version ID in pvc-tahoe_namefreq-base-to-prod.conf to 20210304
+Running this command sequence (with pre-flight tests):
+CMDSEQ: pvc-1-create-vol.sh pvc-2-host-cfg.sh pvc-3-connect-vlun.sh pvc-4-mount-fs.sh pvc-5-install-sprocs.sh
+
+How would you like to run these steps?
+1) non-interactively, running all the steps without requiring user input, or
+2) interactively, where each step requires confirmation?
+(1 or 2) 1
+Version found in pvc-tahoe_namefreq-base-to-prod.conf is 20210304
+
+Prompts will automatically assume (Y) after 2 second(s)
+Starting in 3 seconds...
+----------------------------------------
+Testing: pvc-1-create-vol.sh -t pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+TESTONLY: No modifications will be made
+CFG MOUNTPOINTDIR = /db
+CFG PROJECT = tahoe_namefreq
+CFG DATASET = tahoe_namefreq
+CFG VERSION = 20210304
+CFG SRCHOST = 
+CFG SANWWVNPREFIX = 3624a9370
+TEMPLATES: set SANVOLNAME_TPL to ${HOST}-db-${PROJECT,,}-${VERSION}
+TEMPLATES: set OSMAPNAME_TPL to ${PROJECT,,}_${VERSION}
+TEMPLATES: set OSMOUNT_TPL to ${PROJECT,,}_${VERSION}
+TEMPLATES: set OSVOLLABEL_TPL to ${PROJECT:0:4}${VERSION}
+TEMPLATES: set DBNAME_TPL to ${DATASET}_${VERSION:0:8}
+TEMPLATES: set BASEVOL_TPL to base-db-${PROJECT,,}-${VERSION}
+TEMPLATES: set SRCVOL_TPL to 
+TEMPLATES: set SRCDB_TPL to 
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+#1# SAN:smf3-pure3 DATASET:tahoe_namefreq BASEVOL_TPL:base-db-${PROJECT,,}-${VERSION} BASEVOL:base-db-tahoe_namefreq-20210304 SRCVOL:
+Checking base-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: base-db-tahoe_namefreq-20210304 on smf3-pure3 exists and is ready to be copied.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+     SANVOLNAME:smf3-posmysql01-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: would connect to smf3-pure3 and clone base-db-tahoe_namefreq-20210304 to smf3-posmysql01-db-tahoe_namefreq-20210304
+
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+     SANVOLNAME:smf3-posmysql02-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: would connect to smf3-pure3 and clone base-db-tahoe_namefreq-20210304 to smf3-posmysql02-db-tahoe_namefreq-20210304
+
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+     SANVOLNAME:smf3-posmysql03-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: would connect to smf3-pure3 and clone base-db-tahoe_namefreq-20210304 to smf3-posmysql03-db-tahoe_namefreq-20210304
+
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+     SANVOLNAME:smf3-posmysql04-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: would connect to smf3-pure3 and clone base-db-tahoe_namefreq-20210304 to smf3-posmysql04-db-tahoe_namefreq-20210304
+
+
+pvc-1-create-vol.sh completed tests.  If no errors, run again without the -t option:
+# /usr/local/bin/pvc-1-create-vol.sh pvc-tahoe_namefreq-base-to-prod.conf
+pvc-1-create-vol.sh succeeded.  Would you like to commit this operation and re-run the command without the testonly option?
+Continuing automatically after 2 seconds with no input.
+(Y/n) 
+----------------------------------------
+Commit: pvc-1-create-vol.sh pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+Checking base-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: base-db-tahoe_namefreq-20210304 on smf3-pure3 exists and is ready to be copied.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+Copying base-db-tahoe_namefreq-20210304 to smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3
+New volume has WWVN 53db1b20241287bc000926d7
+
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+Copying base-db-tahoe_namefreq-20210304 to smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3
+New volume has WWVN 53db1b20241287bc000926d8
+
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+Copying base-db-tahoe_namefreq-20210304 to smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3
+New volume has WWVN 53db1b20241287bc000926d9
+
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+Copying base-db-tahoe_namefreq-20210304 to smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3
+New volume has WWVN 53db1b20241287bc000926da
+
+
+pvc-1-create-vol.sh complete.  If no errors, proceed to next step.
+pvc-1-create-vol.sh succeeded.  Hit <ENTER> to proceed or <CTRL-C> to interrupt.
+Continuing automatically after 2 seconds with no input.
+(<enter> or <ctrl-c>) 
+----------------------------------------
+Testing: pvc-2-host-cfg.sh -t pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+TESTONLY: No modifications will be made
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+Checking smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+Checking smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+Checking smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+Checking smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+TESTONLY: would add 53db1b20241287bc000926d7 (3624a937053db1b20241287bc000926d7) to smf3-posmysql01 bindings with map name tahoe_namefreq_20210304
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+TESTONLY: would add 53db1b20241287bc000926d8 (3624a937053db1b20241287bc000926d8) to smf3-posmysql02 bindings with map name tahoe_namefreq_20210304
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+TESTONLY: would add 53db1b20241287bc000926d9 (3624a937053db1b20241287bc000926d9) to smf3-posmysql03 bindings with map name tahoe_namefreq_20210304
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+TESTONLY: would add 53db1b20241287bc000926da (3624a937053db1b20241287bc000926da) to smf3-posmysql04 bindings with map name tahoe_namefreq_20210304
+TESTONLY: would restart multipathd on each of smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+pvc-2-host-cfg.sh completed tests.  If no errors, run again without the -t option:
+# /usr/local/bin/pvc-2-host-cfg.sh pvc-tahoe_namefreq-base-to-prod.conf
+pvc-2-host-cfg.sh succeeded.  Would you like to commit this operation and re-run the command without the testonly option?
+Continuing automatically after 2 seconds with no input.
+(Y/n) 
+----------------------------------------
+Commit: pvc-2-host-cfg.sh pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+multipath-healthcheck.sh: scanning 70 multipath devs ...
+Checking smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+Checking smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+Checking smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+Checking smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be attached.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+ssh step 1:
+.1:
+.2:
+ssh step 2:
+.3:
+.4:
+.5:
+ssh step 3:
+.6:
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+ssh step 1:
+.1:
+.2:
+ssh step 2:
+.3:
+.4:
+.5:
+ssh step 3:
+.6:
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+ssh step 1:
+.1:
+.2:
+ssh step 2:
+.3:
+.4:
+.5:
+ssh step 3:
+.6:
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+ssh step 1:
+.1:
+.2:
+ssh step 2:
+.3:
+.4:
+.5:
+ssh step 3:
+.6:
+ok
+ok
+ok
+ok
+
+pvc-2-host-cfg.sh complete.  If no errors, proceed to next step.
+Verify on hosts that mountpoints and fstab entries were created properly.
+pvc-2-host-cfg.sh succeeded.  Hit <ENTER> to proceed or <CTRL-C> to interrupt.
+Continuing automatically after 2 seconds with no input.
+(<enter> or <ctrl-c>) 
+----------------------------------------
+Testing: pvc-3-connect-vlun.sh -t pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+Checking smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+Checking smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+Checking smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+Checking smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+TESTONLY: Would connect smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 to smf3-posmysql01
+TESTONLY: Would tell host smf3-posmysql01 to rescan scsi bus
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+TESTONLY: Would connect smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 to smf3-posmysql02
+TESTONLY: Would tell host smf3-posmysql02 to rescan scsi bus
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+TESTONLY: Would connect smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 to smf3-posmysql03
+TESTONLY: Would tell host smf3-posmysql03 to rescan scsi bus
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+TESTONLY: Would connect smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 to smf3-posmysql04
+TESTONLY: Would tell host smf3-posmysql04 to rescan scsi bus
+
+pvc-3-connect-vlun.sh completed tests.  If no errors, run again without the -t option:
+# /usr/local/bin/pvc-3-connect-vlun.sh pvc-tahoe_namefreq-base-to-prod.conf
+pvc-3-connect-vlun.sh succeeded.  Would you like to commit this operation and re-run the command without the testonly option?
+Continuing automatically after 2 seconds with no input.
+(Y/n) 
+----------------------------------------
+Commit: pvc-3-connect-vlun.sh pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+Checking smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+Checking smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+Checking smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+Checking smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ready to be connected.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+Name                                        Host Group  Host             LUN
+smf3-posmysql01-db-tahoe_namefreq-20210304  -           smf3-posmysql01  40 
+INFO: telling smf3-posmysql01 to rescan FC/SCSI bus
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+Name                                        Host Group  Host             LUN
+smf3-posmysql02-db-tahoe_namefreq-20210304  -           smf3-posmysql02  36 
+INFO: telling smf3-posmysql02 to rescan FC/SCSI bus
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+Name                                        Host Group  Host             LUN
+smf3-posmysql03-db-tahoe_namefreq-20210304  -           smf3-posmysql03  36 
+INFO: telling smf3-posmysql03 to rescan FC/SCSI bus
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+Name                                        Host Group  Host             LUN
+smf3-posmysql04-db-tahoe_namefreq-20210304  -           smf3-posmysql04  36 
+INFO: telling smf3-posmysql04 to rescan FC/SCSI bus
+
+pvc-3-connect-vlun.sh complete.  If no errors, proceed to next step.
+pvc-3-connect-vlun.sh succeeded.  Hit <ENTER> to proceed or <CTRL-C> to interrupt.
+Continuing automatically after 2 seconds with no input.
+(<enter> or <ctrl-c>) 
+----------------------------------------
+Testing: pvc-4-mount-fs.sh -t pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+TESTONLY option selected (not making any changes on SAN or hosts)
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+Checking smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql01-db-tahoe_namefreq-20210304 already connected to smf3-posmysql01.
+Checking smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql02-db-tahoe_namefreq-20210304 already connected to smf3-posmysql02.
+Checking smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql03-db-tahoe_namefreq-20210304 already connected to smf3-posmysql03.
+Checking smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql04-db-tahoe_namefreq-20210304 already connected to smf3-posmysql04.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+SAN:smf3-pure3 HOST:smf3-posmysql01 DATASET:tahoe_namefreq SANVOLNAME:smf3-posmysql01-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: Would set label taho20210304 on tahoe_namefreq_20210304 on smf3-posmysql01
+TESTONLY: Would mount map tahoe_namefreq_20210304 to /db/tahoe_namefreq_20210304 on smf3-posmysql01
+/dev/mapper/tahoe_namefreq_20210304 /db/tahoe_namefreq_20210304 ext4 nofail 1 2
+TESTONLY: OK: tahoe_namefreq_20210304 found in /etc/fstab
+TESTONLY: Would create symlink /db/mysql/data/tahoe_namefreq_20210304 -> /db/tahoe_namefreq_20210304/data on smf3-posmysql01
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+SAN:smf3-pure3 HOST:smf3-posmysql02 DATASET:tahoe_namefreq SANVOLNAME:smf3-posmysql02-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: Would set label taho20210304 on tahoe_namefreq_20210304 on smf3-posmysql02
+TESTONLY: Would mount map tahoe_namefreq_20210304 to /db/tahoe_namefreq_20210304 on smf3-posmysql02
+/dev/mapper/tahoe_namefreq_20210304 /db/tahoe_namefreq_20210304 ext4 nofail 1 2
+TESTONLY: OK: tahoe_namefreq_20210304 found in /etc/fstab
+TESTONLY: Would create symlink /db/mysql/data/tahoe_namefreq_20210304 -> /db/tahoe_namefreq_20210304/data on smf3-posmysql02
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+SAN:smf3-pure3 HOST:smf3-posmysql03 DATASET:tahoe_namefreq SANVOLNAME:smf3-posmysql03-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: Would set label taho20210304 on tahoe_namefreq_20210304 on smf3-posmysql03
+TESTONLY: Would mount map tahoe_namefreq_20210304 to /db/tahoe_namefreq_20210304 on smf3-posmysql03
+/dev/mapper/tahoe_namefreq_20210304 /db/tahoe_namefreq_20210304 ext4 nofail 1 2
+TESTONLY: OK: tahoe_namefreq_20210304 found in /etc/fstab
+TESTONLY: Would create symlink /db/mysql/data/tahoe_namefreq_20210304 -> /db/tahoe_namefreq_20210304/data on smf3-posmysql03
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+SAN:smf3-pure3 HOST:smf3-posmysql04 DATASET:tahoe_namefreq SANVOLNAME:smf3-posmysql04-db-tahoe_namefreq-20210304 OSMAPNAME:tahoe_namefreq_20210304 OSMOUNT:tahoe_namefreq_20210304 BASEVOL:base-db-tahoe_namefreq-20210304 DBNAME:tahoe_namefreq_20210304
+TESTONLY: Would set label taho20210304 on tahoe_namefreq_20210304 on smf3-posmysql04
+TESTONLY: Would mount map tahoe_namefreq_20210304 to /db/tahoe_namefreq_20210304 on smf3-posmysql04
+/dev/mapper/tahoe_namefreq_20210304 /db/tahoe_namefreq_20210304 ext4 nofail 1 2
+TESTONLY: OK: tahoe_namefreq_20210304 found in /etc/fstab
+TESTONLY: Would create symlink /db/mysql/data/tahoe_namefreq_20210304 -> /db/tahoe_namefreq_20210304/data on smf3-posmysql04
+
+pvc-4-mount-fs.sh completed tests.  If no errors, run again without the -t option:
+# /usr/local/bin/pvc-4-mount-fs.sh pvc-tahoe_namefreq-base-to-prod.conf
+pvc-4-mount-fs.sh succeeded.  Would you like to commit this operation and re-run the command without the testonly option?
+Continuing automatically after 2 seconds with no input.
+(Y/n) 
+----------------------------------------
+Commit: pvc-4-mount-fs.sh pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+Checking smf3-posmysql01-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql01-db-tahoe_namefreq-20210304 already connected to smf3-posmysql01.
+Checking smf3-posmysql02-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql02-db-tahoe_namefreq-20210304 already connected to smf3-posmysql02.
+Checking smf3-posmysql03-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql03-db-tahoe_namefreq-20210304 already connected to smf3-posmysql03.
+Checking smf3-posmysql04-db-tahoe_namefreq-20210304 on smf3-pure3 ...
+INFO: smf3-pure3 reports that volume smf3-posmysql04-db-tahoe_namefreq-20210304 already connected to smf3-posmysql04.
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+Recovering journal.
+Set label taho20210304 on tahoe_namefreq_20210304
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+Recovering journal.
+Set label taho20210304 on tahoe_namefreq_20210304
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+Recovering journal.
+Set label taho20210304 on tahoe_namefreq_20210304
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+Recovering journal.
+Set label taho20210304 on tahoe_namefreq_20210304
+
+pvc-4-mount-fs.sh complete.  If no errors, proceed to next step.
+Verify on hosts that mountpoints and fstab entries were created properly.
+pvc-4-mount-fs.sh succeeded.  Hit <ENTER> to proceed or <CTRL-C> to interrupt.
+Continuing automatically after 2 seconds with no input.
+(<enter> or <ctrl-c>) 
+----------------------------------------
+Testing: pvc-5-install-sprocs.sh -t pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+TESTONLY option selected (not making any changes on SAN or hosts)
+[DEBUG] PROJECT = tahoe_namefreq
+[DEBUG] DATASET = tahoe_namefreq
+[DEBUG] VERSION = 20210304
+[DEBUG] SANWWVNPREFIX = 3624a9370
+[DEBUG] MYSQLDATADIR = /db/mysql/data
+[DEBUG] MOUNTPOINTDIR = /db
+[DEBUG] BRIDGETABLES = 
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+TESTONLY: not installing sql scripts
+
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+TESTONLY: not installing sql scripts
+
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+TESTONLY: not installing sql scripts
+
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+TESTONLY: not installing sql scripts
+
+
+
+pvc-5-install-sprocs.sh completed tests.  If no errors, run again without the -t option:
+/usr/local/bin/pvc-5-install-sprocs.sh pvc-tahoe_namefreq-base-to-prod.conf
+pvc-5-install-sprocs.sh succeeded.  Would you like to commit this operation and re-run the command without the testonly option?
+Continuing automatically after 2 seconds with no input.
+(Y/n) 
+----------------------------------------
+Commit: pvc-5-install-sprocs.sh pvc-tahoe_namefreq-base-to-prod.conf
+----------------------------------------
+[DEBUG] PROJECT = tahoe_namefreq
+[DEBUG] DATASET = tahoe_namefreq
+[DEBUG] VERSION = 20210304
+[DEBUG] SANWWVNPREFIX = 3624a9370
+[DEBUG] MYSQLDATADIR = /db/mysql/data
+[DEBUG] MOUNTPOINTDIR = /db
+[DEBUG] BRIDGETABLES = 
+Provision smf3-pure3 for smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04
+
+SAN:smf3-pure3
+  HOST:smf3-posmysql01
+    DATASET:tahoe_namefreq
+Starting /usr/local/bin/mysql-deploy-db-tasks.sh in /db/tahoe_namefreq_20210304/meta/ on smf3-posmysql01
+Found DBNAME:tahoe_namefreq_20210304 and VERSION:20210304 in /db/tahoe_namefreq_20210304/meta
+Loaded procedures from procedures.sql into tahoe_namefreq_20210304.
+Loaded functions from functions.sql into tahoe_namefreq_20210304.
+/usr/local/bin/mysql-deploy-db-tasks.sh Successfully loaded procs/functions for tahoe_namefreq_20210304 on smf3-posmysql01
+  HOST:smf3-posmysql02
+    DATASET:tahoe_namefreq
+Starting /usr/local/bin/mysql-deploy-db-tasks.sh in /db/tahoe_namefreq_20210304/meta/ on smf3-posmysql02
+Found DBNAME:tahoe_namefreq_20210304 and VERSION:20210304 in /db/tahoe_namefreq_20210304/meta
+Loaded procedures from procedures.sql into tahoe_namefreq_20210304.
+Loaded functions from functions.sql into tahoe_namefreq_20210304.
+/usr/local/bin/mysql-deploy-db-tasks.sh Successfully loaded procs/functions for tahoe_namefreq_20210304 on smf3-posmysql02
+  HOST:smf3-posmysql03
+    DATASET:tahoe_namefreq
+Starting /usr/local/bin/mysql-deploy-db-tasks.sh in /db/tahoe_namefreq_20210304/meta/ on smf3-posmysql03
+Found DBNAME:tahoe_namefreq_20210304 and VERSION:20210304 in /db/tahoe_namefreq_20210304/meta
+Loaded procedures from procedures.sql into tahoe_namefreq_20210304.
+Loaded functions from functions.sql into tahoe_namefreq_20210304.
+/usr/local/bin/mysql-deploy-db-tasks.sh Successfully loaded procs/functions for tahoe_namefreq_20210304 on smf3-posmysql03
+  HOST:smf3-posmysql04
+    DATASET:tahoe_namefreq
+Starting /usr/local/bin/mysql-deploy-db-tasks.sh in /db/tahoe_namefreq_20210304/meta/ on smf3-posmysql04
+Found DBNAME:tahoe_namefreq_20210304 and VERSION:20210304 in /db/tahoe_namefreq_20210304/meta
+Loaded procedures from procedures.sql into tahoe_namefreq_20210304.
+Loaded functions from functions.sql into tahoe_namefreq_20210304.
+/usr/local/bin/mysql-deploy-db-tasks.sh Successfully loaded procs/functions for tahoe_namefreq_20210304 on smf3-posmysql04
+
+
+Stored procedures installed to smf3-posmysql01 smf3-posmysql02 smf3-posmysql03 smf3-posmysql04 
+pvc-5-install-sprocs.sh complete.  If no errors, proceed to next step.
+pvc-5-install-sprocs.sh succeeded.  Hit <ENTER> to proceed or <CTRL-C> to interrupt.
+Continuing automatically after 2 seconds with no input.
+(<enter> or <ctrl-c>)
+

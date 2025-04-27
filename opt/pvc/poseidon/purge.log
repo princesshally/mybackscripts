@@ -1,0 +1,347 @@
+debt_20210413 pure3 qa-posmysql02 :::
+*** Drop database debt_20210413, unmount /db/debt_20210413, detach device map debt_20210413 ***
+Proceeding with: DROP DATABASE IF EXISTS debt_20210413
+DROP DATABASE IF EXISTS debt_20210413 - success
+Running fstrim /db/debt_20210413 to free up space on SAN
+/db/debt_20210413: 465.2 GiB (499465007104 bytes) trimmed
+Unmounted /db/debt_20210413
+Found map debt_20210413
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdzf sdzg sdzh sdzi sdzb sdzc sdzd sdze 
+Map description: debt_20210413 (3624a937053db1b20241287bc00093aa3) dm-88 PURE,FlashArray
+Removing map debt_20210413 ...
+multipathd> remove map debt_20210413
+timeout
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map debt_20210413
+Complete!
+### DETACHED debt_20210413 on qa-posmysql02 from pure3
+debt_20210413 pure3 smf3-posmysql01 :::
+*** Drop database debt_20210413, unmount /db/debt_20210413, detach device map debt_20210413 ***
+Proceeding with: DROP DATABASE IF EXISTS debt_20210413
+DROP DATABASE IF EXISTS debt_20210413 - success
+Running fstrim /db/debt_20210413 to free up space on SAN
+/db/debt_20210413: 465.2 GiB (499465007104 bytes) trimmed
+Unmounted /db/debt_20210413
+Found map debt_20210413
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdpy sdpu sdpz sdpv sdpw sdpx 
+Map description: debt_20210413 (3624a937053db1b20241287bc000941cb) dm-81 PURE,FlashArray
+Removing map debt_20210413 ...
+multipathd> remove map debt_20210413
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map debt_20210413
+Complete!
+### DETACHED debt_20210413 on smf3-posmysql01 from pure3
+debt_20210413 pure3 smf3-posmysql02 :::
+*** Drop database debt_20210413, unmount /db/debt_20210413, detach device map debt_20210413 ***
+Proceeding with: DROP DATABASE IF EXISTS debt_20210413
+DROP DATABASE IF EXISTS debt_20210413 - success
+Running fstrim /db/debt_20210413 to free up space on SAN
+/db/debt_20210413: 465.2 GiB (499465007104 bytes) trimmed
+Unmounted /db/debt_20210413
+Found map debt_20210413
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdlc sdld sdla sdlb 
+Map description: debt_20210413 (3624a937053db1b20241287bc000941cc) dm-81 PURE,FlashArray
+Removing map debt_20210413 ...
+multipathd> remove map debt_20210413
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map debt_20210413
+Complete!
+### DETACHED debt_20210413 on smf3-posmysql02 from pure3
+debt_20210413 pure3 smf3-posmysql03 :::
+*** Drop database debt_20210413, unmount /db/debt_20210413, detach device map debt_20210413 ***
+Proceeding with: DROP DATABASE IF EXISTS debt_20210413
+DROP DATABASE IF EXISTS debt_20210413 - success
+Running fstrim /db/debt_20210413 to free up space on SAN
+/db/debt_20210413: 465.2 GiB (499465007104 bytes) trimmed
+Unmounted /db/debt_20210413
+Found map debt_20210413
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdlc sdld sdla sdlb 
+Map description: debt_20210413 (3624a937053db1b20241287bc000941cd) dm-81 PURE,FlashArray
+Removing map debt_20210413 ...
+multipathd> remove map debt_20210413
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map debt_20210413
+Complete!
+### DETACHED debt_20210413 on smf3-posmysql03 from pure3
+debt_20210413 pure3 smf3-posmysql04 :::
+*** Drop database debt_20210413, unmount /db/debt_20210413, detach device map debt_20210413 ***
+Proceeding with: DROP DATABASE IF EXISTS debt_20210413
+DROP DATABASE IF EXISTS debt_20210413 - success
+Running fstrim /db/debt_20210413 to free up space on SAN
+/db/debt_20210413: 465.2 GiB (499465007104 bytes) trimmed
+Unmounted /db/debt_20210413
+Found map debt_20210413
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sduw sdus sdux sdut sduy sduu sduz sduv 
+Map description: debt_20210413 (3624a937053db1b20241287bc000941ce) dm-81 PURE,FlashArray
+Removing map debt_20210413 ...
+multipathd> remove map debt_20210413
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map debt_20210413
+Complete!
+### DETACHED debt_20210413 on smf3-posmysql04 from pure3
+Deleting property_20210513 from all posmysql hosts on pure2 ...
+property_20210513 pure2 qa-posmysql02 :::
+*** Drop database property_20210513, unmount /db/property_20210513, detach device map property_20210513 ***
+Proceeding with: DROP DATABASE IF EXISTS property_20210513
+DROP DATABASE IF EXISTS property_20210513 - success
+Running fstrim /db/property_20210513 to free up space on SAN
+/db/property_20210513: 928.3 GiB (996797030400 bytes) trimmed
+Unmounted /db/property_20210513
+Found map property_20210513
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdacz sdada sdacx sdacy sdacv sdacw sdact sdacu 
+Map description: property_20210513 (3624a9370390dd232054c82b2000e208a) dm-99 PURE,FlashArray
+Removing map property_20210513 ...
+multipathd> remove map property_20210513
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map property_20210513
+Complete!
+### DETACHED property_20210513 on qa-posmysql02 from pure2
+property_20210513 pure2 smf3-posmysql01 :::
+*** Drop database property_20210513, unmount /db/property_20210513, detach device map property_20210513 ***
+Proceeding with: DROP DATABASE IF EXISTS property_20210513
+DROP DATABASE IF EXISTS property_20210513 - success
+Running fstrim /db/property_20210513 to free up space on SAN
+/db/property_20210513: 928.3 GiB (996797030400 bytes) trimmed
+Unmounted /db/property_20210513
+Found map property_20210513
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdrm sdrk sdrn sdrl 
+Map description: property_20210513 (3624a9370390dd232054c82b2000e22df) dm-88 PURE,FlashArray
+Removing map property_20210513 ...
+multipathd> remove map property_20210513
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map property_20210513
+Complete!
+### DETACHED property_20210513 on smf3-posmysql01 from pure2
+property_20210513 pure2 smf3-posmysql02 :::
+*** Drop database property_20210513, unmount /db/property_20210513, detach device map property_20210513 ***
+Proceeding with: DROP DATABASE IF EXISTS property_20210513
+DROP DATABASE IF EXISTS property_20210513 - success
+Running fstrim /db/property_20210513 to free up space on SAN
+/db/property_20210513: 928.3 GiB (996797030400 bytes) trimmed
+Unmounted /db/property_20210513
+Found map property_20210513
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdme sdmf sdmc sdmd 
+Map description: property_20210513 (3624a9370390dd232054c82b2000e22e0) dm-88 PURE,FlashArray
+Removing map property_20210513 ...
+multipathd> remove map property_20210513
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map property_20210513
+Complete!
+### DETACHED property_20210513 on smf3-posmysql02 from pure2
+property_20210513 pure2 smf3-posmysql03 :::
+*** Drop database property_20210513, unmount /db/property_20210513, detach device map property_20210513 ***
+Proceeding with: DROP DATABASE IF EXISTS property_20210513
+DROP DATABASE IF EXISTS property_20210513 - success
+Running fstrim /db/property_20210513 to free up space on SAN
+/db/property_20210513: 928.3 GiB (996797030400 bytes) trimmed
+Unmounted /db/property_20210513
+Found map property_20210513
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdme sdmf sdmc sdmd 
+Map description: property_20210513 (3624a9370390dd232054c82b2000e22e1) dm-88 PURE,FlashArray
+Removing map property_20210513 ...
+multipathd> remove map property_20210513
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map property_20210513
+Complete!
+### DETACHED property_20210513 on smf3-posmysql03 from pure2
+property_20210513 pure2 smf3-posmysql04 :::
+*** Drop database property_20210513, unmount /db/property_20210513, detach device map property_20210513 ***
+Proceeding with: DROP DATABASE IF EXISTS property_20210513
+DROP DATABASE IF EXISTS property_20210513 - success
+Running fstrim /db/property_20210513 to free up space on SAN
+/db/property_20210513: 928.3 GiB (996797030400 bytes) trimmed
+Unmounted /db/property_20210513
+Found map property_20210513
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdwy sdww sdwz sdwx 
+Map description: property_20210513 (3624a9370390dd232054c82b2000e22e2) dm-88 PURE,FlashArray
+Removing map property_20210513 ...
+multipathd> remove map property_20210513
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map property_20210513
+Complete!
+### DETACHED property_20210513 on smf3-posmysql04 from pure2
+Deleting foreclosure_20200806 from all posmysql hosts on pure3 ...
+foreclosure_20200806 pure3 qa-posmysql02 :::
+*** Drop database foreclosure_20200806, unmount /db/foreclosure_20200806, detach device map foreclosure_20200806 ***
+Proceeding with: DROP DATABASE IF EXISTS foreclosure_20200806
+DROP DATABASE IF EXISTS foreclosure_20200806 - success
+Running fstrim /db/foreclosure_20200806 to free up space on SAN
+/db/foreclosure_20200806: 36.8 GiB (39473819648 bytes) trimmed
+Unmounted /db/foreclosure_20200806
+Found map foreclosure_20200806
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdrv sdrw sdrx sdry sdli sdha sdob sdek 
+Map description: foreclosure_20200806 (3624a937053db1b20241287bc000921ff) dm-64 PURE,FlashArray
+Removing map foreclosure_20200806 ...
+multipathd> remove map foreclosure_20200806
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map foreclosure_20200806
+Complete!
+### DETACHED foreclosure_20200806 on qa-posmysql02 from pure3
+foreclosure_20200806 pure3 smf3-posmysql01 :::
+*** Drop database foreclosure_20200806, unmount /db/foreclosure_20200806, detach device map foreclosure_20200806 ***
+Proceeding with: DROP DATABASE IF EXISTS foreclosure_20200806
+DROP DATABASE IF EXISTS foreclosure_20200806 - success
+Running fstrim /db/foreclosure_20200806 to free up space on SAN
+/db/foreclosure_20200806: 36.8 GiB (39482200064 bytes) trimmed
+Unmounted /db/foreclosure_20200806
+Found map foreclosure_20200806
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdcf sdby sdch sdbz sdcc sdcd 
+Map description: foreclosure_20200806 (3624a937053db1b20241287bc00092266) dm-16 PURE,FlashArray
+Removing map foreclosure_20200806 ...
+multipathd> remove map foreclosure_20200806
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map foreclosure_20200806
+Complete!
+### DETACHED foreclosure_20200806 on smf3-posmysql01 from pure3
+foreclosure_20200806 pure3 smf3-posmysql02 :::
+*** Drop database foreclosure_20200806, unmount /db/foreclosure_20200806, detach device map foreclosure_20200806 ***
+Proceeding with: DROP DATABASE IF EXISTS foreclosure_20200806
+DROP DATABASE IF EXISTS foreclosure_20200806 - success
+Running fstrim /db/foreclosure_20200806 to free up space on SAN
+/db/foreclosure_20200806: 36.8 GiB (39482200064 bytes) trimmed
+Unmounted /db/foreclosure_20200806
+Found map foreclosure_20200806
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdcr sdcs sdcp sdcq 
+Map description: foreclosure_20200806 (3624a937053db1b20241287bc00092267) dm-28 PURE,FlashArray
+Removing map foreclosure_20200806 ...
+multipathd> remove map foreclosure_20200806
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map foreclosure_20200806
+Complete!
+### DETACHED foreclosure_20200806 on smf3-posmysql02 from pure3
+foreclosure_20200806 pure3 smf3-posmysql03 :::
+*** Drop database foreclosure_20200806, unmount /db/foreclosure_20200806, detach device map foreclosure_20200806 ***
+Proceeding with: DROP DATABASE IF EXISTS foreclosure_20200806
+DROP DATABASE IF EXISTS foreclosure_20200806 - success
+Running fstrim /db/foreclosure_20200806 to free up space on SAN
+/db/foreclosure_20200806: 36.8 GiB (39482200064 bytes) trimmed
+Unmounted /db/foreclosure_20200806
+Found map foreclosure_20200806
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdcd sdci sdbt sdby 
+Map description: foreclosure_20200806 (3624a937053db1b20241287bc00092268) dm-26 PURE,FlashArray
+Removing map foreclosure_20200806 ...
+multipathd> remove map foreclosure_20200806
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map foreclosure_20200806
+Complete!
+### DETACHED foreclosure_20200806 on smf3-posmysql03 from pure3
+foreclosure_20200806 pure3 smf3-posmysql04 :::
+*** Drop database foreclosure_20200806, unmount /db/foreclosure_20200806, detach device map foreclosure_20200806 ***
+Proceeding with: DROP DATABASE IF EXISTS foreclosure_20200806
+DROP DATABASE IF EXISTS foreclosure_20200806 - success
+Running fstrim /db/foreclosure_20200806 to free up space on SAN
+/db/foreclosure_20200806: 36.8 GiB (39482200064 bytes) trimmed
+Unmounted /db/foreclosure_20200806
+Found map foreclosure_20200806
+Mountpoints to unmount: 
+M:0 U:0
+All mountpoints unmounted
+Will detach devices after removing map: sdfy sdfn sdgc sdfr sdge sdfu sdgf sdfx 
+Map description: foreclosure_20200806 (3624a937053db1b20241287bc00092269) dm-26 PURE,FlashArray
+Removing map foreclosure_20200806 ...
+multipathd> remove map foreclosure_20200806
+ok
+multipathd> Multipathd -k returned 0
+
+Removing block devices belonging to map
+Removed map and associated block devices
+detached multipath map foreclosure_20200806
+Complete!
+### DETACHED foreclosure_20200806 on smf3-posmysql04 from pure3
